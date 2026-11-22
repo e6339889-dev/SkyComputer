@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SkyComputer — Seu PC na nuvem</title>
+<style>
+:root{--bg:#07111f;--panel:#101e32;--panel2:#142641;--line:#263c59;--text:#edf5ff;--muted:#9eb2cc;--blue:#4c9cff;--cyan:#54d6e8;--green:#4bd49a}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:radial-gradient(ellipse at 80% 0%,#173e68 0,transparent 38%),linear-gradient(145deg,#07111f,#0a1728 60%,#07111f);color:var(--text);min-height:100vh}
+header{display:flex;align-items:center;justify-content:space-between;padding:22px clamp(18px,5vw,64px);border-bottom:1px solid #ffffff12;backdrop-filter:blur(12px);position:sticky;top:0;background:#07111fd9;z-index:2}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px;letter-spacing:.2px}.logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--cyan));display:grid;place-items:center;color:#061326;font-size:21px}
+nav{display:flex;gap:22px;color:var(--muted);font-size:14px}nav a{color:inherit;text-decoration:none}nav a:hover{color:white}
+.wrap{max-width:1120px;margin:auto;padding:52px 22px 70px}.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:30px;align-items:center;margin-bottom:36px}
+.eyebrow{color:var(--cyan);font-size:12px;font-weight:800;letter-spacing:1.7px;text-transform:uppercase}
+h1{font-size:clamp(38px,6vw,64px);line-height:1.02;margin:14px 0 18px;letter-spacing:-2px}.gradient{background:linear-gradient(90deg,#fff,#7ecbff 65%,#5be0df);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--muted);font-size:17px;line-height:1.65;max-width:610px}
+.hero-card{background:linear-gradient(145deg,#183a60,#10213a);border:1px solid #4a8bc555;border-radius:24px;padding:25px;box-shadow:0 22px 70px #0005}
+.hero-card .screen{height:145px;border-radius:14px;background:linear-gradient(135deg,#0d2850,#1d69a1 55%,#6dd7dc);display:flex;align-items:center;justify-content:center;font-size:48px;position:relative;overflow:hidden}
+.hero-card .screen:after{content:"";position:absolute;width:210px;height:210px;border:1px solid #ffffff55;border-radius:50%;right:-45px;top:-65px;box-shadow:0 0 0 25px #ffffff10,0 0 0 50px #ffffff08}
+.hero-card h3{margin:18px 0 5px}.hero-card p{color:#b8cce3;font-size:13px;line-height:1.5;margin:0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:26px 0 38px}.stat{background:#ffffff08;border:1px solid #ffffff12;border-radius:16px;padding:17px}.stat b{display:block;font-size:25px}.stat span{color:var(--muted);font-size:12px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:38px 0 16px}.section-head h2{font-size:24px;margin:0}.section-head p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.pill{border:1px solid #4bd49a55;color:var(--green);background:#4bd49a12;border-radius:99px;padding:7px 11px;font-size:12px;font-weight:700;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.pc{background:linear-gradient(145deg,#12243b,#0e1b2d);border:1px solid var(--line);border-radius:18px;padding:17px;display:flex;align-items:center;gap:14px;transition:.2s}.pc:hover{transform:translateY(-2px);border-color:#4c9cff88}
+.pc-icon{width:48px;height:48px;flex:none;border-radius:14px;background:#4c9cff18;color:#81bfff;display:grid;place-items:center;font-size:24px}
+.pc-info{min-width:0;flex:1}.pc-info b{display:block}.pc-info small{color:var(--muted);display:block;margin-top:5px}
+.status{font-size:11px;color:var(--green);margin-top:7px;display:inline-block}.status.busy{color:#ffcc73}
+button{border:0;border-radius:11px;background:linear-gradient(135deg,#4c9cff,#3985ec);color:white;font-weight:800;padding:11px 15px;cursor:pointer;white-space:nowrap}button:hover{filter:brightness(1.1)}button:disabled{background:#31445e;color:#9fb0c5;cursor:not-allowed}
+.notice{margin-top:24px;padding:16px 18px;border:1px solid #e5b85a44;background:#e5b85a0d;border-radius:14px;color:#d9c9a5;font-size:13px;line-height:1.55}
+footer{border-top:1px solid #ffffff12;color:#8298b4;text-align:center;padding:24px;font-size:12px}
+.modal{position:fixed;inset:0;background:#020914d9;display:none;place-items:center;padding:20px;z-index:5}.modal.show{display:grid}.dialog{width:min(440px,100%);background:#11233a;border:1px solid #3a5a7c;border-radius:22px;padding:24px;box-shadow:0 30px 90px #0009}.dialog h2{margin:0 0 8px}.dialog p{color:var(--muted);line-height:1.5;font-size:14px}.timer{font-size:42px;font-weight:800;letter-spacing:2px;margin:18px 0;color:#8bd7ff}.dialog-actions{display:flex;gap:10px}.dialog-actions button{flex:1}
+@media(max-width:760px){nav{display:none}.hero{grid-template-columns:1fr}.hero-card{max-width:480px}.stats{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}}
+@media(max-width:420px){.pc{flex-wrap:wrap}.pc button{width:100%}.stats{gap:7px}.stat{padding:12px}.stat b{font-size:21px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="logo">☁</div>SkyComputer</div>
+  <nav><a href="#maquinas">Máquinas</a><a href="#sobre">Como funciona</a></nav>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Seu espaço digital, em qualquer lugar</div>
+      <h1>Seu próximo PC<br><span class="gradient">vem da nuvem.</span></h1>
+      <p class="lead">Um painel simples para escolher sua máquina virtual. Acesse pelo celular ou computador — sem precisar de um PC gamer em casa.</p>
+      <div class="stats">
+        <div class="stat"><b>10</b><span>máquinas no painel</span></div>
+        <div class="stat"><b>60 min</b><span>sessão de demonstração</span></div>
+        <div class="stat"><b>☁</b><span>projeto em construção</span></div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="screen">▣</div>
+      <h3>Uma experiência simples</h3>
+      <p>Escolha uma máquina, veja o estado dela e acompanhe o tempo da sessão.</p>
+    </div>
+  </section>
+
+  <section id="maquinas">
+    <div class="section-head">
+      <div><h2>Escolha seu PC</h2><p>Selecione uma das máquinas de demonstração.</p></div>
+      <span class="pill">● Painel demonstrativo</span>
+    </div>
+    <div class="grid" id="pcGrid"></div>
+  </section>
+  <div class="notice" id="sobre"><b>Importante:</b> esta é a primeira versão visual do SkyComputer. Os botões e o cronômetro são uma demonstração no navegador; ainda não existe conexão com computadores Windows reais. Para oferecer PCs na nuvem de verdade, será necessário contratar/configurar servidores, segurança, licenças e controlar o custo de cada sessão.</div>
+</main>
+<footer>© 2026 SkyComputer · Projeto independente em desenvolvimento</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="dialog">
+    <div class="eyebrow">Sessão de demonstração</div>
+    <h2 id="modalTitle">Sky PC</h2>
+    <p>Este cronômetro demonstra como uma sessão de 60 minutos poderá funcionar. Ele não inicia um Windows real.</p>
+    <div class="timer" id="timer">60:00</div>
+    <div class="dialog-actions"><button id="closeBtn" style="background:#31445e">Fechar</button><button id="restartBtn">Reiniciar demo</button></div>
+  </div>
+</div>
+<script>
+const machines = Array.from({length:10},(_,i)=>({id:i+1,os:i%2===0?'Windows 11':'Windows 10',busy:false}));
+const grid=document.getElementById('pcGrid');
+const modal=document.getElementById('modal');
+const timerEl=document.getElementById('timer');
+let seconds=3600, interval=null, activeId=null;
+function render(){
+  grid.innerHTML='';
+  machines.forEach(m=>{
+    const card=document.createElement('article');card.className='pc';
+    card.innerHTML=`<div class="pc-icon">▣</div><div class="pc-info"><b>Sky PC ${String(m.id).padStart(2,'0')}</b><small>${m.os} · Sessão de até 1 hora</small><span class="status ${m.busy?'busy':''}">${m.busy?'● Demonstração em uso':'● Disponível para demonstração'}</span></div><button ${m.busy?'disabled':''} data-id="${m.id}">${m.busy?'Em uso':'Iniciar demo'}</button>`;
+    grid.appendChild(card);
+  });
+  grid.querySelectorAll('button[data-id]').forEach(btn=>btn.addEventListener('click',()=>start(Number(btn.dataset.id))));
+}
+function updateTimer(){timerEl.textContent=String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0');}
+function start(id){
+  activeId=id;seconds=3600;updateTimer();
+  machines.find(m=>m.id===id).busy=true;render();modal.classList.add('show');
+  clearInterval(interval);
+  interval=setInterval(()=>{seconds--;updateTimer();if(seconds<=0)stop();},1000);
+}
+function stop(){
+  clearInterval(interval);interval=null;
+  if(activeId){const m=machines.find(x=>x.id===activeId);if(m)m.busy=false;}
+  activeId=null;modal.classList.remove('show');render();
+}
+document.getElementById('closeBtn').addEventListener('click',stop);
+document.getElementById('restartBtn').addEventListener('click',()=>{seconds=3600;updateTimer();});
+modal.addEventListener('click',e=>{if(e.target===modal)stop();});
+render();
+</script>
+</body>
+</html>
